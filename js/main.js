@@ -1,17 +1,20 @@
 (function ($) {
     "use strict";
 
-    // Initiate the wowjs
+    // Initiate WOW.js
     new WOW().init();
 
     // Sticky Navbar
     $(window).scroll(function () {
         if ($(this).scrollTop() > 40) {
-            $('.navbar').addClass('sticky-top');
+            $('.navbar').addClass('sticky-top shadow-sm');
         } else {
-            $('.navbar').removeClass('sticky-top');
+            $('.navbar').removeClass('sticky-top shadow-sm');
         }
     });
+
+})(jQuery);
+
     
     // Dropdown on mouse hover
     $(document).ready(function () {
@@ -138,6 +141,7 @@ document.getElementById("reviewForm").addEventListener("submit", function(e) {
   this.reset();
   loadReviews();
 });
+
 
 
 
