@@ -104,23 +104,60 @@ Thank you for choosing *Shree Camera Repairing Center*.
         });
     }
 });
-// Handle form submission
-document.getElementById("reviewForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-  const name = document.getElementById("reviewName").value;
-  const rating = document.getElementById("reviewRating").value;
-  const text = document.getElementById("reviewText").value;
+ // ----------------- Customer Review Section -----------------
+    const reviewForm = document.getElementById("reviewForm");
+    const reviewsList = document.getElementById("reviewsList");
 
-  if (!name || !rating || !text) return;
+    if (reviewForm && reviewsList) {
+        // Load existing reviews
+        loadReviews();
 
-  const review = { name, rating: parseInt(rating), text };
-  const reviews = JSON.parse(localStorage.getItem("customerReviews")) || [];
-  reviews.push(review);
-  localStorage.setItem("customerReviews", JSON.stringify(reviews));
+        // Handle form submit
+        reviewForm.addEventListener("submit", function (e) {
+            e.preventDefault();
 
-  // Reset form
-  this.reset();
-  loadReviews();
+            const name = document.getElementById("reviewName").value.trim();
+            const rating = document.getElementById("reviewRating").value.trim();
+            const text = document.getElementById("reviewText").value.trim();
+
+            if (!name || !rating || !text) return;
+
+            const review = { name, rating: parseInt(rating), text };
+            const reviews = JSON.parse(localStorage.getItem("customerReviews")) || [];
+            reviews.push(review);
+            localStorage.setItem("customerReviews", JSON.stringify(reviews));
+
+            // Reset form and reload
+            reviewForm.reset();
+            loadReviews();
+        });
+
+        // Load and display reviews function
+        function loadReviews() {
+            const reviews = JSON.parse(localStorage.getItem("customerReviews")) || [];
+            reviewsList.innerHTML = "";
+
+            if (reviews.length === 0) {
+                reviewsList.innerHTML = "<p class='text-center text-muted'>No reviews yet. Be the first to write one!</p>";
+                return;
+            }
+
+            reviews.forEach(r => {
+                const col = document.createElement("div");
+                col.classList.add("col-md-6", "col-lg-4");
+
+                col.innerHTML = `
+                    <div class="review-item border p-3 rounded bg-white shadow-sm">
+                        <h5 class="text-primary mb-1">${r.name}</h5>
+                        <p class="mb-1">⭐ ${r.rating}/5</p>
+                        <p class="text-muted mb-0">${r.text}</p>
+                    </div>
+                `;
+                reviewsList.appendChild(col);
+            });
+        }
+    }
 });
+
 
 
