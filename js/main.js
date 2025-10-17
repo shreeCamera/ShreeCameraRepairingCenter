@@ -104,3 +104,23 @@ Thank you for choosing *Shree Camera Repairing Center*.
         });
     }
 });
+// Handle form submission
+document.getElementById("reviewForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const name = document.getElementById("reviewName").value;
+  const rating = document.getElementById("reviewRating").value;
+  const text = document.getElementById("reviewText").value;
+
+  if (!name || !rating || !text) return;
+
+  const review = { name, rating: parseInt(rating), text };
+  const reviews = JSON.parse(localStorage.getItem("customerReviews")) || [];
+  reviews.push(review);
+  localStorage.setItem("customerReviews", JSON.stringify(reviews));
+
+  // Reset form
+  this.reset();
+  loadReviews();
+});
+
+
