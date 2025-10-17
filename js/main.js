@@ -106,9 +106,9 @@ Thank you for choosing *Shree Camera Repairing Center*.
 });
 document.addEventListener("DOMContentLoaded", function () {
     const reviewForm = document.getElementById("reviewForm");
-    const reviewsList = document.getElementById("reviewsList");
+    const reviewRating = document.getElementById("reviewRating");
 
-    if (!reviewForm || !reviewsList) return;
+    if (!reviewForm || !reviewRating) return;
 
     // Load existing reviews on page load
     loadReviews();
@@ -135,10 +135,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function loadReviews() {
         const reviews = JSON.parse(localStorage.getItem("customerReviews")) || [];
-        reviewsList.innerHTML = "";
+       reviewRating.innerHTML = "";
 
         if (reviews.length === 0) {
-            reviewsList.innerHTML = "<p class='text-center text-muted'>No reviews yet. Be the first to write one!</p>";
+           reviewRating.innerHTML = "<p class='text-center text-muted'>No reviews yet. Be the first to write one!</p>";
             return;
         }
 
@@ -157,6 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
 
 
 
