@@ -66,11 +66,11 @@
 
 })(jQuery);
 
-// WhatsApp Appointment Script
+// ----------------- Book Appointment WhatsApp -----------------
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("appointmentForm");
     const note = document.getElementById("whatsappNote");
-    const OWNER_NUMBER = "919793677725"; // <-- yahan apna WhatsApp number daalein (91 ke sath)
+    const OWNER_NUMBER = "919793677725"; // <-- Owner ka WhatsApp number
 
     if (form) {
         form.addEventListener("submit", function (e) {
